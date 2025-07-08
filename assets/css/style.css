@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --bg-color: #1f1f1f;
+    --color-sec: #2c2c2c;
+    --text: #FFFFFF;
+    --hover-white: #d0d0d0;
+    --hover-gray: #454545;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 110px;
+    max-width: 700px;
+    color: var(--text);
+    gap: 50px;
+    min-height: 100vh;
+    height: auto;
+}
+
+h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    align-self: center;
+    position: fixed;
+    background-color: var(--bg-color);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 30px 0;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.div-messages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 10px;
+    padding-bottom: 160px;
+}
+
+.message {
+    background-color: var(--color-sec);
+    padding: 18px;
+    border-radius: 18px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.07);
+    max-width: 70%;
+    line-height: 28px;
+
+    &.gemini {
+        max-width: 100%;
+        background: none;
+        color: var(--text);
+        align-self: flex-start;
+        box-shadow: none;
+    }
+}
+
+.loading {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    padding: 18px;
+    border-radius: 18px;
+    gap: 4px;
+
+    & .doc {
+        background-color: var(--text);
+        width: 5px;
+        height: 5px;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        position: relative;
+        animation: loadingDoc 0.6s infinite alternate;
+
+        &.pri {
+            animation-delay: 0s;
+        }
+        &.seg {
+            animation-delay: 0.2s;
+        }
+        &.ter {
+            animation-delay: 0.4s;
+        }
+    }
+}
+
+@keyframes loadingDoc {
+    0% {
+        top: 0px;
+    }
+    100% {
+        top: -4px;
+    }
+}
+
+.div-form-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 700px;
+    position: fixed;
+    bottom: 0;
+    padding-bottom: 40px;
+    background-color: var(--bg-color);
+    border-radius: 20px 20px 0 0;
+}
+
+.form-input {
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.07);
+    border-radius: 20px;
+    position: relative;
+
+    & input {
+        padding: 20px 20px 55px 20px;
+        border: none;
+        border-radius: 20px;
+        width: 100%;
+        background-color: var(--color-sec);
+        color: var(--text);
+        outline: none;
+        font-weight: 400;
+    }
+
+    & button {
+        width: 35px;
+        height: 35px;
+        border: none;
+        border-radius: 50%;
+        background-color: var(--text);
+        color: var(--bg-color);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+
+        &:hover {
+            background-color: var(--hover-white);
+        }
+
+        & i {
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+    }
+
+    & .div-actions {
+        position: absolute;
+        bottom: 10px;
+        left: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+
+        & i {
+            width: 20px;
+            height: 20px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text);
+            border-radius: 50%;
+            padding: 18px;
+            animation: none;
+
+            &:hover {
+                background-color: var(--hover-gray);
+            }
+        }
+
+    }
+}
+
+.gravando {
+    color: red;
+    animation: pulse 0.9s infinite !important;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inteligência Artificial</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://kit.fontawesome.com/ac1aaaa398.js" crossorigin="anonymous"></script>
+    <script src="assets/js/main.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Chat GPFake</h1>
+
+        <!-- Div onde serão exibidas o histórico de mensagens -->
+        <div class="div-messages">
+            <p class="message gemini mensagem-fixa"></p>
+
+            <div class="loading">
+                <div class="doc pri"></div>
+                <div class="doc seg"></div>
+                <div class="doc ter"></div>
+            </div>
+        </div>
+
+        <!-- Form para enviar a mensagem -->
+        <div class="div-form-input">
+            <form class="form-input">
+                <input type="text" class="input-text" placeholder="Digite sua mensagem aqui...">
+
+                <button type="submit" class="btn-send">
+                    <i class="fa-solid fa-paper-plane" id="icone-botao"></i>
+                </button>
+
+                <div class="div-actions">
+                    <i class="fa-solid fa-paperclip anexar"></i>
+                    <i class="fa-solid fa-microphone microfone"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
