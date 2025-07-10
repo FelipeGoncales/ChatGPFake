@@ -3,16 +3,29 @@ import { enviarIconeBotao, markdownToHTML } from './utils.js';
 let typingTimeout;
 let pararDigitacao = false;
 
-export function escreverDigitando(elemento, texto, velocidade = 20) {
+// Validar se o usuário rolou a tela para cima
+function usuarioScrollouParaCima() {
+    const margem = 45; // margem para considerar "quase no final"
+    return window.innerHeight + window.scrollY < document.body.scrollHeight - margem;
+}
+
+export function escreverDigitando(elemento, texto, velocidade = 9) {
     let i = 0;
     let plainText = texto;
     pararDigitacao = false;
 
     let alturaAntiga = document.body.scrollHeight;
+    let usuarioScrollou = false;
 
     function digitarProximaLetra() {
 
-        if (alturaAntiga !== document.body.scrollHeight) {
+        if (usuarioScrollouParaCima()) {
+            usuarioScrollou = true; // Marca que o usuário rolou a tela para cima
+        } else {
+            usuarioScrollou = false; // Marca que o usuário não rolou a tela para cima
+        }
+
+        if (alturaAntiga < document.body.scrollHeight && !usuarioScrollou) {
             // Garante que a tela role para baixo após adicionar a mensagem
             window.scrollTo({
                 top: document.body.scrollHeight,
@@ -32,7 +45,7 @@ export function escreverDigitando(elemento, texto, velocidade = 20) {
             i++;
 
             let delay = velocidade;
-            if (/[.,!?;:]/.test(char)) delay += 150;
+            if (/[.,!?;:]/.test(char)) delay += 50;
 
             typingTimeout = setTimeout(digitarProximaLetra, delay);
         } else {
