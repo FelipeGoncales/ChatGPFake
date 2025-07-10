@@ -7,14 +7,14 @@ import { pararIconeBotao } from './utils.js'; // Importa a função enviarIconeB
 
 // Ao carregar o DOM, inicia a digitação
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // Garante que o scroll esteja no topo
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
 
-    const texto = 'Olá, eu sou o Gemini! Como posso te ajudar hoje?';
+    const texto = 'Olá, eu sou o GPFake! Como posso te ajudar hoje?';
     const elemento = document.querySelector('.mensagem-fixa');
     escreverDigitando(elemento, texto);
 });
