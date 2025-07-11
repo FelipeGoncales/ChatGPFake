@@ -297,18 +297,21 @@ h1 {
     text-align: center;
 }
 
-.div-tip.anexar:hover .tip.anexar {
-    display: flex;
-}
+@media (min-width: 769px) {
 
-.div-tip.record-audio:hover .tip.record-audio {
-    display: flex;
-}
+    .div-tip.anexar:hover .tip.anexar {
+        display: flex;
+    }
+    
+    .div-tip.record-audio:hover .tip.record-audio {
+        display: flex;
+    }
+    
+    .div-tip.gen-image:hover .tip.gen-image {
+        display: flex;
+    }
 
-.div-tip.gen-image:hover .tip.gen-image {
-    display: flex;
 }
-
 
 @keyframes pulse {
     0% {
