@@ -25,6 +25,29 @@ export async function addMessage(message, gemini) {
     }
 }
 
+// Função parar adicionar imagem
+export async function addImagem(url) {
+
+    const img = document.createElement('img');
+
+    // Adiciona a url
+    img.src = url;
+
+    img.classList.add('imagem-gerada');
+    
+    divMessages.appendChild(img);
+
+    removeLoading();
+
+    setTimeout(() => {
+        // Garante que a tela role para baixo após adicionar a mensagem
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }, 200)
+}
+
 // Adiciona o loading
 export function addLoading() {
     const loadingElement = document.querySelector('.loading');

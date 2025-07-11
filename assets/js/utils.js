@@ -25,3 +25,19 @@ export function pararIconeBotao() {
     iconeBotao.classList.remove('fa-paper-plane');
     iconeBotao.classList.add('fa-stop');
 }
+
+// Função para atualizar a lista de imagens
+export function attListaImagens() {
+
+    document.querySelectorAll('.imagem-gerada').forEach((img, index) => {
+
+        img.setAttribute('data-index', index);
+
+        img.addEventListener('click', () => {
+            const modal = document.querySelector('.modal');
+            const modalImg = document.querySelector('.modal img');
+            modalImg.src = img.src;
+            modal.style.display = 'flex';
+        });
+    });
+}

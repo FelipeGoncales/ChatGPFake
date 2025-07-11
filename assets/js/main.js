@@ -1,9 +1,9 @@
-import { askGemini } from './gemini.js'; // Importa a função askGemini
+import { askGemini, gerarImagem } from './gemini.js'; // Importa a função askGemini
 import { escreverDigitando, pararDigitacaoFunc } from './digitar.js'; // Importa as funções de digitação
 import { addLoading, removeLoading } from './loading.js'; // Importa as funções de loading
 import { speakMessage } from './speech.js'; // Importa a função speakMessage
 import { addMessage } from './loading.js'; // Importa a função addMessage
-import { pararIconeBotao } from './utils.js'; // Importa a função enviarIconeBotao
+import { pararIconeBotao, attListaImagens } from './utils.js'; // Importa a função enviarIconeBotao
 
 // Ao carregar o DOM, inicia a digitação
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,6 +17,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const texto = 'Olá, eu sou o GPFake! Como posso te ajudar hoje?';
     const elemento = document.querySelector('.mensagem-fixa');
     escreverDigitando(elemento, texto);
+
+    // Adiciona a função ao botão de gerar imagem
+    const gerarImagemBtn = document.querySelector('.gerar-imagem');
+
+    // Adiciona ou remove a classe de ícone ao botão
+    gerarImagemBtn.addEventListener('click', () => {
+
+        if (gerarImagemBtn.classList.contains('marcada')) {
+
+            gerarImagemBtn.classList.remove('marcada');
+
+        } else {
+
+            gerarImagemBtn.classList.add('marcada');
+
+        }
+    })
+
+    // Função para fechar o modal de imagem
+    const closeModalImg = document.querySelector('.close-modal-img');
+    const modal = document.querySelector('.modal');
+
+    // Fecha o modal ao clicar no ícone de fechar
+    closeModalImg.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Fecha o modal ao clicar fora da imagem
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
 });
 
 // Obtém o ícone do botão de enviar
@@ -57,6 +90,27 @@ formInput.addEventListener('submit', function (e) {
 
         input.value = '';
 
+        // Obtém o botão de gerar imagem
+        const gerarImagemBtn = document.querySelector('.gerar-imagem');
+
+        // Caso esteja marcado como gerar imagem
+        if (gerarImagemBtn.classList.contains('marcada')) {
+            gerarImagem(message)
+                .then(() => {
+                    // Após gerar a imagem, limpa o ícone de parar
+                    pararIconeBotao();
+
+                    // Atualiza a lista de imagens
+                    attListaImagens();
+                })
+                .catch(error => {
+                    console.error('Erro ao gerar imagem:', error);
+                    addMessage('Desculpe, ocorreu um erro ao gerar a imagem.');
+                });
+            return; // Não chama o Gemini se for gerar imagem
+        }
+
+        // Senaõ, conversa normalmente com o Gemini
         askGemini(message)
             .then(response => {
                 addMessage(response, true);
