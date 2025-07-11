@@ -1,4 +1,5 @@
 import { addMessage, addImagem } from './loading.js'; // Importa a função addMessage
+import { enviarIconeBotao } from './utils.js' // Importa a função para altera o botão
 
 const URL_API = "https://api-chatgpfake.onrender.com";
 
@@ -61,6 +62,9 @@ export async function gerarImagem(prompt) {
 
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
+
+    // Altera o ícone do botão para enviar novamente
+    enviarIconeBotao();
 
     // Adiciona a imagem gerada
     addImagem(url);

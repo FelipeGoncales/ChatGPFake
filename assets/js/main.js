@@ -1,7 +1,7 @@
 import { askGemini, gerarImagem } from './gemini.js'; // Importa a função askGemini
 import { escreverDigitando, pararDigitacaoFunc } from './digitar.js'; // Importa as funções de digitação
 import { addLoading, removeLoading } from './loading.js'; // Importa as funções de loading
-import { speakMessage } from './speech.js'; // Importa a função speakMessage
+import { speakMessage, microfoneRecord } from './speech.js'; // Importa a função speakMessage
 import { addMessage } from './loading.js'; // Importa a função addMessage
 import { pararIconeBotao, attListaImagens } from './utils.js'; // Importa a função enviarIconeBotao
 
@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
         top: 0,
         behavior: 'smooth'
     });
+
+    // Adiciona as funções do microfone
+    microfoneRecord();
 
     const texto = 'Olá, eu sou o GPFake! Como posso te ajudar hoje?';
     const elemento = document.querySelector('.mensagem-fixa');
@@ -86,8 +89,6 @@ formInput.addEventListener('submit', function (e) {
             addLoading();
         }, 200);
 
-        speakMessage(message);
-
         input.value = '';
 
         // Obtém o botão de gerar imagem
@@ -114,7 +115,6 @@ formInput.addEventListener('submit', function (e) {
         askGemini(message)
             .then(response => {
                 addMessage(response, true);
-                speakMessage(response);
             })
             .catch(error => {
                 console.error('Erro ao obter resposta:', error);
