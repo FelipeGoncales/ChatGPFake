@@ -1,8 +1,8 @@
 import { addMessage, addImagem } from './loading.js'; // Importa a função addMessage
 
 // Chave da API do Gemini
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const HUGGING_FACE_API_KEY = process.env.HUGGING_FACE_API_KEY;
+const GEMINI_API_KEY = 'AIzaSyAjk5M1azZhsGXSOqQGYNPUhtGEyiZeETI';
+const HUGGING_FACE_API_KEY = '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';
 
 // Armazena o histórico da conversa
 const conversationHistory = [];
